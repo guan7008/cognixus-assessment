@@ -1,8 +1,12 @@
 # Cognixus Assessment
 
 ## Running the app
-```
-docker compose up
+```bash
+# run the app
+docker-compose up
+
+# recreate & rebuild & run in background
+docker-compose up -d --force-recreate --no-deps --build
 ```
 
 ## Testing the app
@@ -11,8 +15,8 @@ docker compose up
 ```
 
 ## Building the app
-```
-// TODO
+```bash
+docker compose build
 ```
 
 ## Documentation
