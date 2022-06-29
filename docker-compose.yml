@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    ports:
+      - "8000:5000"
+  redis:
+    image: "redis:alpine"
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - "MYSQL_DATABASE=cadb"
+      - "MYSQL_ROOT_PASSWORD=r00t"
