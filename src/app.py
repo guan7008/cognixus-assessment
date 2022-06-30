@@ -6,7 +6,7 @@ from flask import Flask, jsonify, request
 
 # load modules
 from endpoints.blueprint_auth import blueprint_auth
-from endpoints.blueprint_todo import blueprint_todo
+from endpoints.blueprint_data import blueprint_data
 
 # init Flask app
 app = Flask(__name__)
@@ -31,6 +31,6 @@ app.register_blueprint(
     url_prefix="/api/v1/auth",
 )
 app.register_blueprint(
-    blueprint_todo,
-    url_prefix="/api/v1/todo",
+    blueprint_data,
+    url_prefix="/api/v1/data",
 )
