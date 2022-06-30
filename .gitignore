@@ -1,3 +1,4 @@
 .vscode/settings.json
 credentials/*
 tests/__pycache__/*
+src/__pycache__/*
