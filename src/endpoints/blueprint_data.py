@@ -1,6 +1,5 @@
-import os
-import mysql.connector
 from flask import Blueprint, jsonify, request
+from endpoints import mysqlconnector
 
 # define the blueprint
 blueprint_data = Blueprint(name="blueprint_data", import_name=__name__)
@@ -21,13 +20,7 @@ def add_todo():
     query = "INSERT INTO todo (task) VALUES (%s)"
     val = (task,)
 
-    cnx = mysql.connector.connect(
-        host=os.environ["MYSQL_HOST"],
-        port=os.environ["MYSQL_PORT"],
-        database=os.environ["MYSQL_DATABASE"],
-        user=os.environ["MYSQL_USER"],
-        password=os.environ["MYSQL_PASSWORD"],
-    )
+    cnx = mysqlconnector()
 
     cursor = cnx.cursor()
     cursor.execute(query, val)
@@ -48,13 +41,7 @@ def delete_todo(id):
     query = "DELETE FROM todo WHERE id = %s"
     val = (id,)
 
-    cnx = mysql.connector.connect(
-        host=os.environ["MYSQL_HOST"],
-        port=os.environ["MYSQL_PORT"],
-        database=os.environ["MYSQL_DATABASE"],
-        user=os.environ["MYSQL_USER"],
-        password=os.environ["MYSQL_PASSWORD"],
-    )
+    cnx = mysqlconnector()
 
     cursor = cnx.cursor()
     cursor.execute(query, val)
@@ -74,13 +61,7 @@ def list_todo():
     limit = request.form.get("limit", 100, int)
     offset = request.form.get("offset", 0, int)
 
-    cnx = mysql.connector.connect(
-        host=os.environ["MYSQL_HOST"],
-        port=os.environ["MYSQL_PORT"],
-        database=os.environ["MYSQL_DATABASE"],
-        user=os.environ["MYSQL_USER"],
-        password=os.environ["MYSQL_PASSWORD"],
-    )
+    cnx = mysqlconnector()
 
     pagination = ""
     if not limit <= 0:
@@ -109,13 +90,7 @@ def mark_completed_todo(id):
     query = "UPDATE todo SET completed = 1 WHERE id = %s"
     val = (id,)
 
-    cnx = mysql.connector.connect(
-        host=os.environ["MYSQL_HOST"],
-        port=os.environ["MYSQL_PORT"],
-        database=os.environ["MYSQL_DATABASE"],
-        user=os.environ["MYSQL_USER"],
-        password=os.environ["MYSQL_PASSWORD"],
-    )
+    cnx = mysqlconnector()
 
     cursor = cnx.cursor()
     cursor.execute(query, val)
