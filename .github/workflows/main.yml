@@ -46,16 +46,16 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/cognixus-assessment:latest
-  docker_build:
-    name: Pytest in Pipenv
+  # docker_build:
+  #   name: Pytest in Pipenv
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    container:
-      image: docker://leowoo5221/cognixus-assessment:latest
+  #   container:
+  #     image: docker://leowoo5221/cognixus-assessment:latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test with pytest
-        run: |
-          pipenv run pytest tests/
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Test with pytest
+  #       run: |
+  #         pipenv run pytest tests/
