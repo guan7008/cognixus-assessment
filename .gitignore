@@ -1,2 +1,3 @@
 .vscode/settings.json
 credentials/*
+tests/__pycache__/*
