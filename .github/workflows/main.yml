@@ -24,26 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
-      - name: Install Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      - id: install-pipenv
-        name: Install pipenv
-        run: |
-          python -m pip install --upgrade --no-cache-dir pip
-          python -m pip install --no-cache-dir pipenv
-        shell: bash
-
-      - name: Install pytest
-        run: |
-          python -m pip install --no-cache-dir pytest
-
-      - name: Install requests
-        run: |
-          python -m pip install --no-cache-dir requests
 
       # - name: Test with pytest
       #   run: |
@@ -66,3 +46,16 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/cognixus-assessment:latest
+  docker_build:
+    name: Pytest in Pipenv
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: docker://leowoo5221/cognixus-assessment:latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test with pytest
+        run: |
+          pipenv run pytest tests/
