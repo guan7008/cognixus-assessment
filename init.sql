@@ -6,3 +6,5 @@ CREATE TABLE IF NOT EXISTS todo (
     completed TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = INNODB;
+CREATE INDEX idx_tdtask
+ON todo (id, task);
