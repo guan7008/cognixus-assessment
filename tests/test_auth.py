@@ -1,4 +1,3 @@
-import os
 import requests
 
 
@@ -28,13 +27,12 @@ def test_google_login_no_data():
     assert json["status_code"] == 21001
     assert json["message"] == "ERROR: Invalid Input"
 
+
 def test_google_login_complete():
     endpoint = "http://localhost:8000/api/v1/auth/google/login"
     response = requests.post(
         endpoint,
-        data={
-            "redirect_uri": "http://localhost:8000/google/auth"
-        },
+        data={"redirect_uri": "http://localhost:8000/google/auth"},
         headers={
             "x-api-key": "5cebc2dc-894e-4ce9-ae13-e446c348f7e6",
         },
