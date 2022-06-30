@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM python:3.7-alpine
 WORKDIR /code
+ENV API_KEY=5cebc2dc-894e-4ce9-ae13-e446c348f7e6
 ENV FLASK_APP=src/app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV MYSQL_HOST=db
