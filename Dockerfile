@@ -19,6 +19,9 @@ ENV GOOGLE_REDIRECT_URI=http://localhost:8000/google/auth
 RUN apk add --no-cache gcc musl-dev linux-headers libffi-dev
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+COPY Pipfile .
+COPY Pipfile.lock .
+RUN pipenv install --system --deploy
 EXPOSE 5000
 COPY . .
 CMD ["flask", "run"]

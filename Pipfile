@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+redis = "*"
+mysql-connector-python = "*"
+google-api-python-client = "*"
+google-auth = "*"
+authlib = "==0.11"
+virtualenv = "*"
+validators = "*"
+pytest = "*"
+pipenv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
