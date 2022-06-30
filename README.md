@@ -1,5 +1,11 @@
 # Cognixus Assessment
 
+<p align="center">
+<a href="https://github.com/psf/black/actions"><img alt="Actions Status" src="https://github.com/psf/black/workflows/Test/badge.svg"></a>
+<a href="https://black.readthedocs.io/en/stable/?badge=stable"><img alt="Documentation Status" src="https://readthedocs.org/projects/black/badge/?version=stable"></a>
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+</p>
+
 ## Running the app
 ```bash
 # run the app
@@ -20,6 +26,9 @@ docker compose build
 ```
 
 ## Documentation
+
+### Code Style
+* **psf/black**
 
 ### GitHub Commit Convention Type
 Must be one of the following:
