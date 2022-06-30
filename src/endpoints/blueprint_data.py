@@ -1,4 +1,3 @@
-from crypt import methods
 import os
 import mysql.connector
 from flask import Blueprint, jsonify, request
@@ -43,6 +42,33 @@ def add_todo():
     )
 
 
+@blueprint_data.route("/todo/<id>", methods=["DELETE"])
+def delete_todo(id):
+
+    query = "DELETE FROM todo WHERE id = %s"
+    val = (id,)
+
+    cnx = mysql.connector.connect(
+        host=os.environ["MYSQL_HOST"],
+        port=os.environ["MYSQL_PORT"],
+        database=os.environ["MYSQL_DATABASE"],
+        user=os.environ["MYSQL_USER"],
+        password=os.environ["MYSQL_PASSWORD"],
+    )
+
+    cursor = cnx.cursor()
+    cursor.execute(query, val)
+
+    cnx.commit()
+
+    return jsonify(
+        {
+            "status_code": 22004,
+            "message": "OK: Delete a TODO item",
+        }
+    )
+
+
 @blueprint_data.route("/todo")
 def list_todo():
     limit = request.form.get("limit", 100, int)
@@ -74,5 +100,31 @@ def list_todo():
             "status_code": 22000,
             "message": "OK: List all TODO items",
             "result": result,
+        }
+    )
+
+
+@blueprint_data.route("/todo/<id>/completed", methods=["PUT"])
+def mark_completed_todo(id):
+    query = "UPDATE todo SET completed = 1 WHERE id = %s"
+    val = (id,)
+
+    cnx = mysql.connector.connect(
+        host=os.environ["MYSQL_HOST"],
+        port=os.environ["MYSQL_PORT"],
+        database=os.environ["MYSQL_DATABASE"],
+        user=os.environ["MYSQL_USER"],
+        password=os.environ["MYSQL_PASSWORD"],
+    )
+
+    cursor = cnx.cursor()
+    cursor.execute(query, val)
+
+    cnx.commit()
+
+    return jsonify(
+        {
+            "status_code": 22006,
+            "message": "OK: Mark completed a TODO item",
         }
     )
