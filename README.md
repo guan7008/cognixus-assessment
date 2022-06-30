@@ -16,8 +16,8 @@ docker-compose up -d --force-recreate --no-deps --build
 ```
 
 ## Testing the app
-```
-// TODO
+```bash
+python -m pytest tests/
 ```
 
 ## Building the app
