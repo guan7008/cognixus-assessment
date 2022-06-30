@@ -22,6 +22,8 @@ RUN pip install -r requirements.txt
 COPY Pipfile .
 COPY Pipfile.lock .
 RUN pipenv install --system --deploy
+ENV WORKON_HOME /root
+ENV PIPENV_PIPFILE /Pipfile
 EXPOSE 5000
 COPY . .
 CMD ["flask", "run"]
