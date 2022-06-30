@@ -27,9 +27,9 @@ def google_login():
     if not redirect_uri or not validators.url(redirect_uri):
         return jsonify(
             {
+                "status_code": 21001,
                 "message": "ERROR: Invalid Input",
-            },
-            400,
+            }
         )
 
     session = OAuth2Session(
@@ -42,8 +42,8 @@ def google_login():
     uri = session.authorization_url(GOOGLE_AUTH_URI)
     return jsonify(
         {
+            "status_code": 20000,
             "message": "OK: Proceed To Login Uri",
             "redirect_uri": uri,
-        },
-        200,
+        }
     )

@@ -19,9 +19,9 @@ def authorized():
     if api_key != os.environ["API_KEY"]:
         return jsonify(
             {
+                "status_code": 20001,
                 "message": "ERROR: Unauthorized",
             },
-            401,
         )
 
 
